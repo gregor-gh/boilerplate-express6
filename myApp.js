@@ -1,4 +1,5 @@
 require("dotenv").config();
+const bodyParser = require("body-parser");
 var express = require('express');
 var app = express();
 
@@ -13,6 +14,7 @@ app.use("/", (req,res,next) => {
     const ip = req.ip;
     const path = req.path;
     console.log(method + " "+ path + " - " + ip);
+    bodyParser.urlencoded({extended:false});
     next();
 })
 
