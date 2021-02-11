@@ -18,6 +18,7 @@ app.use("/", (req,res,next) => {
 })
 
 app.use(bodyParser.urlencoded({extended:false}));
+//app.use(bodyParser.json());
 
 app.get("/now",(req,res,next) => {
     req.time = new Date().toString();
@@ -49,10 +50,10 @@ app.route("/name")
     .get((req,res,next) => {
         req.fullname = req.query.first+" "+req.query.last
         res.json({name: req.fullname})
-    });/*
+    })
     .post((req,res) => {
-        
-    })*/
+        res.json({name: req.body.first+ " "+ req.body.last})
+    })
 
 
 
