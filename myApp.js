@@ -14,9 +14,10 @@ app.use("/", (req,res,next) => {
     const ip = req.ip;
     const path = req.path;
     console.log(method + " "+ path + " - " + ip);
-    bodyParser.urlencoded({extended:false});
     next();
 })
+
+app.use(bodyParser.urlencoded({extended:false}));
 
 app.get("/now",(req,res,next) => {
     req.time = new Date().toString();
