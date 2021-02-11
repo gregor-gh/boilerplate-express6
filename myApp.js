@@ -15,13 +15,27 @@ app.use("/", (req,res,next) => {
     console.log(method + " "+ path + " - " + ip);
     next();
 })
-
+/*
 app.get("/now",(req,res,next) => {
     req.time = new Date().toString();
     next();
 }, (req,res) => {
     res.send({time: req.time})
 })
+*/
+
+app.get(
+    "/now",
+    (req, res, next) => {
+      req.time = new Date().toString();
+      next();
+    },
+    (req, res) => {
+      res.send({
+        time: req.time
+      });
+    }
+  );
 
 app.get("/", (req,res) => {
     res.sendFile(__dirname+"/views/index.html");
@@ -39,7 +53,9 @@ app.get("/json",(req,res) => {
         })
 });
 
-
+app.get("/:word/echo", (req,res) => {
+    res.send({echo: req.params.word})
+});
 
 
 
